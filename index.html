@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title>Reservoir 101 webmap (draft)</title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Reservoirdepthcontoursrelativeto855masl5minterval_0.js"></script>
+        <script src="data/CheslattaLake_3.js"></script>
+        <script src="data/SkinsLake_4.js"></script>
+        <script src="data/NechakoRiver_5.js"></script>
+        <script src="data/CheslattaRiver_6.js"></script>
+        <script src="data/PreReservoirLake_7.js"></script>
+        <script src="data/PrereservoirRiver_8.js"></script>
+        <script src="data/CheslattaWatershed_9.js"></script>
+        <script src="data/UpperNechakoCanyon_10.js"></script>
+        <script src="data/NechakoReservoir_11.js"></script>
+        <script src="data/TransmissionLinetoKitimat_12.js"></script>
+        <script src="data/KemanoTunnels_13.js"></script>
+        <script src="data/ReservoirPoints_14.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[53.28551506203604,-125.90919665130723],[53.74086976898519,-125.01497390135913]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_Reservoirdepthcontoursrelativeto855masl5minterval_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ELEV_MIN'] !== null ? autolinker.link(feature.properties['ELEV_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ELEV_MAX'] !== null ? autolinker.link(feature.properties['ELEV_MAX'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Reservoirdepthcontoursrelativeto855masl5minterval_0_0(feature) {
+            if (feature.properties['ELEV_MAX'] >= 2.500000 && feature.properties['ELEV_MAX'] <= 12.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(48,18,59,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 12.500000 && feature.properties['ELEV_MAX'] <= 22.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,107,227,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 22.500000 && feature.properties['ELEV_MAX'] <= 32.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,188,235,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 32.500000 && feature.properties['ELEV_MAX'] <= 42.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(50,242,152,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 42.500000 && feature.properties['ELEV_MAX'] <= 52.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,252,60,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 52.500000 && feature.properties['ELEV_MAX'] <= 62.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,207,58,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 62.500000 && feature.properties['ELEV_MAX'] <= 72.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,126,33,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 72.500000 && feature.properties['ELEV_MAX'] <= 82.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(208,47,5,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV_MAX'] >= 82.500000 && feature.properties['ELEV_MAX'] <= 92.500000 ) {
+                return {
+                pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(122,4,3,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Reservoirdepthcontoursrelativeto855masl5minterval_0');
+        map.getPane('pane_Reservoirdepthcontoursrelativeto855masl5minterval_0').style.zIndex = 400;
+        map.getPane('pane_Reservoirdepthcontoursrelativeto855masl5minterval_0').style['mix-blend-mode'] = 'normal';
+        var layer_Reservoirdepthcontoursrelativeto855masl5minterval_0 = new L.geoJson(json_Reservoirdepthcontoursrelativeto855masl5minterval_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+            layerName: 'layer_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+            pane: 'pane_Reservoirdepthcontoursrelativeto855masl5minterval_0',
+            onEachFeature: pop_Reservoirdepthcontoursrelativeto855masl5minterval_0,
+            style: style_Reservoirdepthcontoursrelativeto855masl5minterval_0_0,
+        });
+        bounds_group.addLayer(layer_Reservoirdepthcontoursrelativeto855masl5minterval_0);
+        map.addLayer(layer_Reservoirdepthcontoursrelativeto855masl5minterval_0);
+        map.createPane('pane_ReservoirFloodedShadedTerrain2x_1');
+        map.getPane('pane_ReservoirFloodedShadedTerrain2x_1').style.zIndex = 401;
+        var img_ReservoirFloodedShadedTerrain2x_1 = 'data/ReservoirFloodedShadedTerrain2x_1.png';
+        var img_bounds_ReservoirFloodedShadedTerrain2x_1 = [[53.23300081943455,-127.7079556469523],[53.86363634693697,-124.6930373630766]];
+        var layer_ReservoirFloodedShadedTerrain2x_1 = new L.imageOverlay(img_ReservoirFloodedShadedTerrain2x_1,
+                                              img_bounds_ReservoirFloodedShadedTerrain2x_1,
+                                              {pane: 'pane_ReservoirFloodedShadedTerrain2x_1'});
+        bounds_group.addLayer(layer_ReservoirFloodedShadedTerrain2x_1);
+        map.addLayer(layer_ReservoirFloodedShadedTerrain2x_1);
+        map.createPane('pane_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2');
+        map.getPane('pane_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2').style.zIndex = 402;
+        var img_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2 = 'data/NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2.png';
+        var img_bounds_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2 = [[53.23300094358197,-127.70794677126086],[53.86363634671039,-124.69304624090978]];
+        var layer_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2 = new L.imageOverlay(img_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2,
+                                              img_bounds_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2,
+                                              {pane: 'pane_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2'});
+        bounds_group.addLayer(layer_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2);
+        map.addLayer(layer_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2);
+        function pop_CheslattaLake_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBODY_'] !== null ? autolinker.link(feature.properties['WATERBODY_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHED_'] !== null ? autolinker.link(feature.properties['WATERSHED_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_1'] !== null ? autolinker.link(feature.properties['WATERBOD_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_2'] !== null ? autolinker.link(feature.properties['WATERBOD_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_HA'] !== null ? autolinker.link(feature.properties['AREA_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_1'] !== null ? autolinker.link(feature.properties['GNIS_ID_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAME_'] !== null ? autolinker.link(feature.properties['GNIS_NAME_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_2'] !== null ? autolinker.link(feature.properties['GNIS_ID_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_1'] !== null ? autolinker.link(feature.properties['GNIS_NAM_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GNIS_ID_3</th>\
+                        <td>' + (feature.properties['GNIS_ID_3'] !== null ? autolinker.link(feature.properties['GNIS_ID_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_2'] !== null ? autolinker.link(feature.properties['GNIS_NAM_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLUE_LINE_'] !== null ? autolinker.link(feature.properties['BLUE_LINE_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_1'] !== null ? autolinker.link(feature.properties['WATERSHE_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FWA_WATERS'] !== null ? autolinker.link(feature.properties['FWA_WATERS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCAL_WATE'] !== null ? autolinker.link(feature.properties['LOCAL_WATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_2'] !== null ? autolinker.link(feature.properties['WATERSHE_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEFT_RIGHT'] !== null ? autolinker.link(feature.properties['LEFT_RIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_3'] !== null ? autolinker.link(feature.properties['WATERBOD_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_3'] !== null ? autolinker.link(feature.properties['WATERSHE_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_4'] !== null ? autolinker.link(feature.properties['WATERBOD_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_4'] !== null ? autolinker.link(feature.properties['WATERSHE_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEATURE_CO'] !== null ? autolinker.link(feature.properties['FEATURE_CO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_L'] !== null ? autolinker.link(feature.properties['GEOMETRY_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_A'] !== null ? autolinker.link(feature.properties['GEOMETRY_A'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Class'] !== null ? autolinker.link(feature.properties['Class'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['areaHa'] !== null ? autolinker.link(feature.properties['areaHa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CheslattaLake_3_0() {
+            return {
+                pane: 'pane_CheslattaLake_3',
+                opacity: 1,
+                color: 'rgba(38,89,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,65,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_CheslattaLake_3');
+        map.getPane('pane_CheslattaLake_3').style.zIndex = 403;
+        map.getPane('pane_CheslattaLake_3').style['mix-blend-mode'] = 'normal';
+        var layer_CheslattaLake_3 = new L.geoJson(json_CheslattaLake_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_CheslattaLake_3',
+            layerName: 'layer_CheslattaLake_3',
+            pane: 'pane_CheslattaLake_3',
+            onEachFeature: pop_CheslattaLake_3,
+            style: style_CheslattaLake_3_0,
+        });
+        bounds_group.addLayer(layer_CheslattaLake_3);
+        map.addLayer(layer_CheslattaLake_3);
+        function pop_SkinsLake_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBODY_'] !== null ? autolinker.link(feature.properties['WATERBODY_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHED_'] !== null ? autolinker.link(feature.properties['WATERSHED_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_1'] !== null ? autolinker.link(feature.properties['WATERBOD_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_2'] !== null ? autolinker.link(feature.properties['WATERBOD_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_HA'] !== null ? autolinker.link(feature.properties['AREA_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_1'] !== null ? autolinker.link(feature.properties['GNIS_ID_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAME_'] !== null ? autolinker.link(feature.properties['GNIS_NAME_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_2'] !== null ? autolinker.link(feature.properties['GNIS_ID_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_1'] !== null ? autolinker.link(feature.properties['GNIS_NAM_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_3'] !== null ? autolinker.link(feature.properties['GNIS_ID_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_2'] !== null ? autolinker.link(feature.properties['GNIS_NAM_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLUE_LINE_'] !== null ? autolinker.link(feature.properties['BLUE_LINE_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_1'] !== null ? autolinker.link(feature.properties['WATERSHE_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FWA_WATERS'] !== null ? autolinker.link(feature.properties['FWA_WATERS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCAL_WATE'] !== null ? autolinker.link(feature.properties['LOCAL_WATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_2'] !== null ? autolinker.link(feature.properties['WATERSHE_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEFT_RIGHT'] !== null ? autolinker.link(feature.properties['LEFT_RIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_3'] !== null ? autolinker.link(feature.properties['WATERBOD_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_3'] !== null ? autolinker.link(feature.properties['WATERSHE_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_4'] !== null ? autolinker.link(feature.properties['WATERBOD_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_4'] !== null ? autolinker.link(feature.properties['WATERSHE_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEATURE_CO'] !== null ? autolinker.link(feature.properties['FEATURE_CO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_L'] !== null ? autolinker.link(feature.properties['GEOMETRY_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_A'] !== null ? autolinker.link(feature.properties['GEOMETRY_A'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Class'] !== null ? autolinker.link(feature.properties['Class'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['areaHa'] !== null ? autolinker.link(feature.properties['areaHa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SkinsLake_4_0() {
+            return {
+                pane: 'pane_SkinsLake_4',
+                opacity: 1,
+                color: 'rgba(38,89,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,65,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_SkinsLake_4');
+        map.getPane('pane_SkinsLake_4').style.zIndex = 404;
+        map.getPane('pane_SkinsLake_4').style['mix-blend-mode'] = 'normal';
+        var layer_SkinsLake_4 = new L.geoJson(json_SkinsLake_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_SkinsLake_4',
+            layerName: 'layer_SkinsLake_4',
+            pane: 'pane_SkinsLake_4',
+            onEachFeature: pop_SkinsLake_4,
+            style: style_SkinsLake_4_0,
+        });
+        bounds_group.addLayer(layer_SkinsLake_4);
+        map.addLayer(layer_SkinsLake_4);
+        function pop_NechakoRiver_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBODY_'] !== null ? autolinker.link(feature.properties['WATERBODY_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHED_'] !== null ? autolinker.link(feature.properties['WATERSHED_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_1'] !== null ? autolinker.link(feature.properties['WATERBOD_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_2'] !== null ? autolinker.link(feature.properties['WATERBOD_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_HA'] !== null ? autolinker.link(feature.properties['AREA_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_1'] !== null ? autolinker.link(feature.properties['GNIS_ID_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAME_'] !== null ? autolinker.link(feature.properties['GNIS_NAME_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_2'] !== null ? autolinker.link(feature.properties['GNIS_ID_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_1'] !== null ? autolinker.link(feature.properties['GNIS_NAM_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_3'] !== null ? autolinker.link(feature.properties['GNIS_ID_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_2'] !== null ? autolinker.link(feature.properties['GNIS_NAM_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLUE_LINE_'] !== null ? autolinker.link(feature.properties['BLUE_LINE_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_1'] !== null ? autolinker.link(feature.properties['WATERSHE_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FWA_WATERS'] !== null ? autolinker.link(feature.properties['FWA_WATERS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCAL_WATE'] !== null ? autolinker.link(feature.properties['LOCAL_WATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_2'] !== null ? autolinker.link(feature.properties['WATERSHE_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEFT_RIGHT'] !== null ? autolinker.link(feature.properties['LEFT_RIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_3'] !== null ? autolinker.link(feature.properties['WATERBOD_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_3'] !== null ? autolinker.link(feature.properties['WATERSHE_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_4'] !== null ? autolinker.link(feature.properties['WATERBOD_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_4'] !== null ? autolinker.link(feature.properties['WATERSHE_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEATURE_CO'] !== null ? autolinker.link(feature.properties['FEATURE_CO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_L'] !== null ? autolinker.link(feature.properties['GEOMETRY_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_A'] !== null ? autolinker.link(feature.properties['GEOMETRY_A'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NechakoRiver_5_0() {
+            return {
+                pane: 'pane_NechakoRiver_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,230,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_NechakoRiver_5');
+        map.getPane('pane_NechakoRiver_5').style.zIndex = 405;
+        map.getPane('pane_NechakoRiver_5').style['mix-blend-mode'] = 'normal';
+        var layer_NechakoRiver_5 = new L.geoJson(json_NechakoRiver_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_NechakoRiver_5',
+            layerName: 'layer_NechakoRiver_5',
+            pane: 'pane_NechakoRiver_5',
+            onEachFeature: pop_NechakoRiver_5,
+            style: style_NechakoRiver_5_0,
+        });
+        bounds_group.addLayer(layer_NechakoRiver_5);
+        map.addLayer(layer_NechakoRiver_5);
+        function pop_CheslattaRiver_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBODY_'] !== null ? autolinker.link(feature.properties['WATERBODY_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHED_'] !== null ? autolinker.link(feature.properties['WATERSHED_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_1'] !== null ? autolinker.link(feature.properties['WATERBOD_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_2'] !== null ? autolinker.link(feature.properties['WATERBOD_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_HA'] !== null ? autolinker.link(feature.properties['AREA_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_1'] !== null ? autolinker.link(feature.properties['GNIS_ID_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAME_'] !== null ? autolinker.link(feature.properties['GNIS_NAME_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_2'] !== null ? autolinker.link(feature.properties['GNIS_ID_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_1'] !== null ? autolinker.link(feature.properties['GNIS_NAM_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_3'] !== null ? autolinker.link(feature.properties['GNIS_ID_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_2'] !== null ? autolinker.link(feature.properties['GNIS_NAM_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLUE_LINE_'] !== null ? autolinker.link(feature.properties['BLUE_LINE_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_1'] !== null ? autolinker.link(feature.properties['WATERSHE_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FWA_WATERS'] !== null ? autolinker.link(feature.properties['FWA_WATERS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCAL_WATE'] !== null ? autolinker.link(feature.properties['LOCAL_WATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_2'] !== null ? autolinker.link(feature.properties['WATERSHE_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEFT_RIGHT'] !== null ? autolinker.link(feature.properties['LEFT_RIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_3'] !== null ? autolinker.link(feature.properties['WATERBOD_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_3'] !== null ? autolinker.link(feature.properties['WATERSHE_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_4'] !== null ? autolinker.link(feature.properties['WATERBOD_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_4'] !== null ? autolinker.link(feature.properties['WATERSHE_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEATURE_CO'] !== null ? autolinker.link(feature.properties['FEATURE_CO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_L'] !== null ? autolinker.link(feature.properties['GEOMETRY_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_A'] !== null ? autolinker.link(feature.properties['GEOMETRY_A'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CheslattaRiver_6_0() {
+            return {
+                pane: 'pane_CheslattaRiver_6',
+                opacity: 1,
+                color: 'rgba(38,89,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,65,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_CheslattaRiver_6');
+        map.getPane('pane_CheslattaRiver_6').style.zIndex = 406;
+        map.getPane('pane_CheslattaRiver_6').style['mix-blend-mode'] = 'normal';
+        var layer_CheslattaRiver_6 = new L.geoJson(json_CheslattaRiver_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_CheslattaRiver_6',
+            layerName: 'layer_CheslattaRiver_6',
+            pane: 'pane_CheslattaRiver_6',
+            onEachFeature: pop_CheslattaRiver_6,
+            style: style_CheslattaRiver_6_0,
+        });
+        bounds_group.addLayer(layer_CheslattaRiver_6);
+        map.addLayer(layer_CheslattaRiver_6);
+        function pop_PreReservoirLake_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PreReservoirLake_7_0() {
+            return {
+                pane: 'pane_PreReservoirLake_7',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_PreReservoirLake_7');
+        map.getPane('pane_PreReservoirLake_7').style.zIndex = 407;
+        map.getPane('pane_PreReservoirLake_7').style['mix-blend-mode'] = 'normal';
+        var layer_PreReservoirLake_7 = new L.geoJson(json_PreReservoirLake_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_PreReservoirLake_7',
+            layerName: 'layer_PreReservoirLake_7',
+            pane: 'pane_PreReservoirLake_7',
+            onEachFeature: pop_PreReservoirLake_7,
+            style: style_PreReservoirLake_7_0,
+        });
+        bounds_group.addLayer(layer_PreReservoirLake_7);
+        function pop_PrereservoirRiver_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PrereservoirRiver_8_0() {
+            return {
+                pane: 'pane_PrereservoirRiver_8',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_PrereservoirRiver_8');
+        map.getPane('pane_PrereservoirRiver_8').style.zIndex = 408;
+        map.getPane('pane_PrereservoirRiver_8').style['mix-blend-mode'] = 'normal';
+        var layer_PrereservoirRiver_8 = new L.geoJson(json_PrereservoirRiver_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_PrereservoirRiver_8',
+            layerName: 'layer_PrereservoirRiver_8',
+            pane: 'pane_PrereservoirRiver_8',
+            onEachFeature: pop_PrereservoirRiver_8,
+            style: style_PrereservoirRiver_8_0,
+        });
+        bounds_group.addLayer(layer_PrereservoirRiver_8);
+        function pop_CheslattaWatershed_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CheslattaWatershed_9_0() {
+            return {
+                pane: 'pane_CheslattaWatershed_9',
+                opacity: 1,
+                color: 'rgba(255,179,1,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_CheslattaWatershed_9');
+        map.getPane('pane_CheslattaWatershed_9').style.zIndex = 409;
+        map.getPane('pane_CheslattaWatershed_9').style['mix-blend-mode'] = 'normal';
+        var layer_CheslattaWatershed_9 = new L.geoJson(json_CheslattaWatershed_9, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_CheslattaWatershed_9',
+            layerName: 'layer_CheslattaWatershed_9',
+            pane: 'pane_CheslattaWatershed_9',
+            onEachFeature: pop_CheslattaWatershed_9,
+            style: style_CheslattaWatershed_9_0,
+        });
+        bounds_group.addLayer(layer_CheslattaWatershed_9);
+        map.addLayer(layer_CheslattaWatershed_9);
+        function pop_UpperNechakoCanyon_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID'] !== null ? autolinker.link(feature.properties['FID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_UpperNechakoCanyon_10_0() {
+            return {
+                pane: 'pane_UpperNechakoCanyon_10',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_UpperNechakoCanyon_10');
+        map.getPane('pane_UpperNechakoCanyon_10').style.zIndex = 410;
+        map.getPane('pane_UpperNechakoCanyon_10').style['mix-blend-mode'] = 'normal';
+        var layer_UpperNechakoCanyon_10 = new L.geoJson(json_UpperNechakoCanyon_10, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_UpperNechakoCanyon_10',
+            layerName: 'layer_UpperNechakoCanyon_10',
+            pane: 'pane_UpperNechakoCanyon_10',
+            onEachFeature: pop_UpperNechakoCanyon_10,
+            style: style_UpperNechakoCanyon_10_0,
+        });
+        bounds_group.addLayer(layer_UpperNechakoCanyon_10);
+        map.addLayer(layer_UpperNechakoCanyon_10);
+        function pop_NechakoReservoir_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBODY_'] !== null ? autolinker.link(feature.properties['WATERBODY_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHED_'] !== null ? autolinker.link(feature.properties['WATERSHED_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_1'] !== null ? autolinker.link(feature.properties['WATERBOD_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_2'] !== null ? autolinker.link(feature.properties['WATERBOD_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_HA'] !== null ? autolinker.link(feature.properties['AREA_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_1'] !== null ? autolinker.link(feature.properties['GNIS_ID_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAME_'] !== null ? autolinker.link(feature.properties['GNIS_NAME_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_2'] !== null ? autolinker.link(feature.properties['GNIS_ID_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_1'] !== null ? autolinker.link(feature.properties['GNIS_NAM_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_ID_3'] !== null ? autolinker.link(feature.properties['GNIS_ID_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GNIS_NAM_2'] !== null ? autolinker.link(feature.properties['GNIS_NAM_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLUE_LINE_'] !== null ? autolinker.link(feature.properties['BLUE_LINE_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_1'] !== null ? autolinker.link(feature.properties['WATERSHE_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FWA_WATERS'] !== null ? autolinker.link(feature.properties['FWA_WATERS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCAL_WATE'] !== null ? autolinker.link(feature.properties['LOCAL_WATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_2'] !== null ? autolinker.link(feature.properties['WATERSHE_2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEFT_RIGHT'] !== null ? autolinker.link(feature.properties['LEFT_RIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_3'] !== null ? autolinker.link(feature.properties['WATERBOD_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_3'] !== null ? autolinker.link(feature.properties['WATERSHE_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERBOD_4'] !== null ? autolinker.link(feature.properties['WATERBOD_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATERSHE_4'] !== null ? autolinker.link(feature.properties['WATERSHE_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEATURE_CO'] !== null ? autolinker.link(feature.properties['FEATURE_CO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_L'] !== null ? autolinker.link(feature.properties['GEOMETRY_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOMETRY_A'] !== null ? autolinker.link(feature.properties['GEOMETRY_A'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NechakoReservoir_11_0() {
+            return {
+                pane: 'pane_NechakoReservoir_11',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_NechakoReservoir_11');
+        map.getPane('pane_NechakoReservoir_11').style.zIndex = 411;
+        map.getPane('pane_NechakoReservoir_11').style['mix-blend-mode'] = 'normal';
+        var layer_NechakoReservoir_11 = new L.geoJson(json_NechakoReservoir_11, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_NechakoReservoir_11',
+            layerName: 'layer_NechakoReservoir_11',
+            pane: 'pane_NechakoReservoir_11',
+            onEachFeature: pop_NechakoReservoir_11,
+            style: style_NechakoReservoir_11_0,
+        });
+        bounds_group.addLayer(layer_NechakoReservoir_11);
+        function pop_TransmissionLinetoKitimat_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TransmissionLinetoKitimat_12_0() {
+            return {
+                pane: 'pane_TransmissionLinetoKitimat_12',
+                opacity: 1,
+                color: 'rgba(219,30,42,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_TransmissionLinetoKitimat_12');
+        map.getPane('pane_TransmissionLinetoKitimat_12').style.zIndex = 412;
+        map.getPane('pane_TransmissionLinetoKitimat_12').style['mix-blend-mode'] = 'normal';
+        var layer_TransmissionLinetoKitimat_12 = new L.geoJson(json_TransmissionLinetoKitimat_12, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_TransmissionLinetoKitimat_12',
+            layerName: 'layer_TransmissionLinetoKitimat_12',
+            pane: 'pane_TransmissionLinetoKitimat_12',
+            onEachFeature: pop_TransmissionLinetoKitimat_12,
+            style: style_TransmissionLinetoKitimat_12_0,
+        });
+        bounds_group.addLayer(layer_TransmissionLinetoKitimat_12);
+        map.addLayer(layer_TransmissionLinetoKitimat_12);
+        function pop_KemanoTunnels_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_KemanoTunnels_13_0() {
+            return {
+                pane: 'pane_KemanoTunnels_13',
+                opacity: 1,
+                color: 'rgba(56,255,1,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_KemanoTunnels_13');
+        map.getPane('pane_KemanoTunnels_13').style.zIndex = 413;
+        map.getPane('pane_KemanoTunnels_13').style['mix-blend-mode'] = 'normal';
+        var layer_KemanoTunnels_13 = new L.geoJson(json_KemanoTunnels_13, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_KemanoTunnels_13',
+            layerName: 'layer_KemanoTunnels_13',
+            pane: 'pane_KemanoTunnels_13',
+            onEachFeature: pop_KemanoTunnels_13,
+            style: style_KemanoTunnels_13_0,
+        });
+        bounds_group.addLayer(layer_KemanoTunnels_13);
+        map.addLayer(layer_KemanoTunnels_13);
+        function pop_ReservoirPoints_14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ReservoirPoints_14_0(feature) {
+            switch(String(feature.properties['name'])) {
+                case 'Cheslatta Falls':
+                    return {
+                pane: 'pane_ReservoirPoints_14',
+                radius: 6.8,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,25,235,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Kenney Dam':
+                    return {
+                pane: 'pane_ReservoirPoints_14',
+                radius: 6.8,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(64,220,61,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Skins Spillway':
+                    return {
+                pane: 'pane_ReservoirPoints_14',
+                radius: 6.8,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Tahtsa Narrows':
+                    return {
+                pane: 'pane_ReservoirPoints_14',
+                radius: 6.8,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(119,121,232,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Tunnel Intake':
+                    return {
+                pane: 'pane_ReservoirPoints_14',
+                radius: 6.8,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(212,209,57,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Kemano Powerhouse':
+                    return {
+                pane: 'pane_ReservoirPoints_14',
+                radius: 6.8,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,63,66,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ReservoirPoints_14');
+        map.getPane('pane_ReservoirPoints_14').style.zIndex = 414;
+        map.getPane('pane_ReservoirPoints_14').style['mix-blend-mode'] = 'normal';
+        var layer_ReservoirPoints_14 = new L.geoJson(json_ReservoirPoints_14, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_ReservoirPoints_14',
+            layerName: 'layer_ReservoirPoints_14',
+            pane: 'pane_ReservoirPoints_14',
+            onEachFeature: pop_ReservoirPoints_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_ReservoirPoints_14_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_ReservoirPoints_14);
+        map.addLayer(layer_ReservoirPoints_14);
+            var title = new L.Control();
+            title.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info');
+                this.update();
+                return this._div;
+            };
+            title.update = function () {
+                this._div.innerHTML = '<h2>Reservoir 101 webmap (draft)</h2>';
+            };
+            title.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Reservoir Points<br /><table><tr><td style="text-align: center;"><img src="legend/ReservoirPoints_14_CheslattaFalls0.png" /></td><td>Cheslatta Falls</td></tr><tr><td style="text-align: center;"><img src="legend/ReservoirPoints_14_KenneyDam1.png" /></td><td>Kenney Dam</td></tr><tr><td style="text-align: center;"><img src="legend/ReservoirPoints_14_SkinsSpillway2.png" /></td><td>Skins Spillway</td></tr><tr><td style="text-align: center;"><img src="legend/ReservoirPoints_14_TahtsaNarrows3.png" /></td><td>Tahtsa Narrows</td></tr><tr><td style="text-align: center;"><img src="legend/ReservoirPoints_14_TunnelIntake4.png" /></td><td>Tunnel Intake</td></tr><tr><td style="text-align: center;"><img src="legend/ReservoirPoints_14_KemanoPowerhouse5.png" /></td><td>Kemano Powerhouse</td></tr></table>': layer_ReservoirPoints_14,'<img src="legend/KemanoTunnels_13.png" /> Kemano Tunnels': layer_KemanoTunnels_13,'<img src="legend/TransmissionLinetoKitimat_12.png" /> Transmission Line to Kitimat': layer_TransmissionLinetoKitimat_12,'<img src="legend/NechakoReservoir_11.png" /> Nechako Reservoir ': layer_NechakoReservoir_11,'<img src="legend/UpperNechakoCanyon_10.png" /> Upper Nechako Canyon': layer_UpperNechakoCanyon_10,'<img src="legend/CheslattaWatershed_9.png" /> CheslattaWatershed': layer_CheslattaWatershed_9,'<img src="legend/PrereservoirRiver_8.png" /> Pre-reservoir River': layer_PrereservoirRiver_8,'<img src="legend/PreReservoirLake_7.png" /> Pre-Reservoir Lake': layer_PreReservoirLake_7,'<img src="legend/CheslattaRiver_6.png" /> Cheslatta River': layer_CheslattaRiver_6,'<img src="legend/NechakoRiver_5.png" /> Nechako River': layer_NechakoRiver_5,'<img src="legend/SkinsLake_4.png" /> Skins Lake': layer_SkinsLake_4,'<img src="legend/CheslattaLake_3.png" /> Cheslatta Lake': layer_CheslattaLake_3,"NechakoReservoir_855minPreFloodTopo_noCanyon_byte": layer_NechakoReservoir_855minPreFloodTopo_noCanyon_byte_2,"Reservoir Flooded Shaded Terrain 2x": layer_ReservoirFloodedShadedTerrain2x_1,'Reservoir depth contours relative to 855m asl (5m interval)<br /><table><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_01250.png" /></td><td>0 - 12.5</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_1252251.png" /></td><td>12.5 - 22.5</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_23332.png" /></td><td>23 - 33</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_33433.png" /></td><td>33 - 43</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_43534.png" /></td><td>43 - 53</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_53635.png" /></td><td>53 - 63</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_63736.png" /></td><td>63 - 73</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_73837.png" /></td><td>73 - 83</td></tr><tr><td style="text-align: center;"><img src="legend/Reservoirdepthcontoursrelativeto855masl5minterval_0_83938.png" /></td><td>83 - 93</td></tr></table>': layer_Reservoirdepthcontoursrelativeto855masl5minterval_0,},{collapsed:false}).addTo(map);L.control.scale({position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_ReservoirPoints_14.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Liberation Sans\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ReservoirPoints_14'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_ReservoirPoints_14]);
+        map.on("zoomend", function(){
+            resetLabels([layer_ReservoirPoints_14]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_ReservoirPoints_14]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_ReservoirPoints_14]);
+        });
+        </script>
+    </body>
+</html>
